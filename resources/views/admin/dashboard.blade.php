@@ -1,10 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
     <title>MonitorX - System Monitoring</title>
+
 
     <style>
 
@@ -18,7 +25,9 @@
             box-sizing: border-box;
         }
 
+
         :root {
+
             --primary: #2563eb;
             --primary-dark: #1d4ed8;
 
@@ -37,13 +46,17 @@
 
             --sidebar: #111827;
             --sidebar-hover: #1f2937;
+
         }
+
 
         html {
             scroll-behavior: smooth;
         }
 
+
         body {
+
             font-family:
                 Inter,
                 -apple-system,
@@ -53,10 +66,13 @@
                 sans-serif;
 
             background: var(--background);
+
             color: var(--text);
 
             overflow-x: hidden;
+
         }
+
 
         button,
         input,
@@ -64,9 +80,11 @@
             font-family: inherit;
         }
 
+
         button {
             cursor: pointer;
         }
+
 
         a {
             text-decoration: none;
@@ -78,7 +96,9 @@
         ===================================================== */
 
         .app {
+
             min-height: 100vh;
+
         }
 
 
@@ -87,6 +107,7 @@
         ===================================================== */
 
         .sidebar {
+
             position: fixed;
 
             left: 0;
@@ -96,29 +117,39 @@
             width: 250px;
 
             background: var(--sidebar);
+
             color: white;
 
             padding: 24px 16px;
 
             display: flex;
+
             flex-direction: column;
 
             z-index: 1000;
+
         }
 
 
-        /* Logo */
+        /* =====================================================
+           LOGO
+        ===================================================== */
 
         .logo {
+
             display: flex;
+
             align-items: center;
 
             gap: 12px;
 
             padding: 0 10px 30px;
+
         }
 
+
         .logo-icon {
+
             width: 40px;
             height: 40px;
 
@@ -127,24 +158,32 @@
             border-radius: 10px;
 
             display: flex;
+
             align-items: center;
             justify-content: center;
 
             font-size: 20px;
+
             font-weight: 700;
 
             flex-shrink: 0;
+
         }
 
+
         .logo-text strong {
+
             display: block;
 
             font-size: 16px;
 
             color: white;
+
         }
 
+
         .logo-text span {
+
             display: block;
 
             color: #9ca3af;
@@ -152,20 +191,66 @@
             font-size: 11px;
 
             margin-top: 3px;
+
         }
 
 
-        /* Navigation */
+        /* =====================================================
+           HAMBURGER
+        ===================================================== */
+
+        .hamburger {
+
+            display: none;
+
+            width: 40px;
+            height: 40px;
+
+            border: none;
+
+            border-radius: 8px;
+
+            background: transparent;
+
+            color: white;
+
+            font-size: 24px;
+
+            align-items: center;
+
+            justify-content: center;
+
+            transition: 0.2s ease;
+
+        }
+
+
+        .hamburger:hover {
+
+            background: var(--sidebar-hover);
+
+        }
+
+
+        /* =====================================================
+           NAVIGATION
+        ===================================================== */
 
         .nav {
+
             display: flex;
+
             flex-direction: column;
 
             gap: 5px;
+
         }
 
+
         .nav a {
+
             display: flex;
+
             align-items: center;
 
             gap: 12px;
@@ -179,39 +264,71 @@
             font-size: 14px;
 
             transition: 0.2s ease;
+
         }
+
 
         .nav a:hover {
+
             background: var(--sidebar-hover);
+
             color: white;
+
         }
+
 
         .nav a.active {
+
             background: var(--primary);
+
             color: white;
+
         }
 
+
         .nav-icon {
+
             width: 22px;
 
             text-align: center;
 
             font-size: 17px;
+
+            flex-shrink: 0;
+
         }
 
 
-        /* Sidebar bottom */
+        /* =====================================================
+           MOBILE MENU ITEMS
+        ===================================================== */
+
+        .mobile-menu-item {
+
+            display: none !important;
+
+        }
+
+
+        /* =====================================================
+           SIDEBAR BOTTOM
+        ===================================================== */
 
         .sidebar-bottom {
+
             margin-top: auto;
 
             display: flex;
+
             flex-direction: column;
 
             gap: 5px;
+
         }
 
+
         .sidebar-bottom a {
+
             color: #9ca3af;
 
             padding: 12px;
@@ -219,12 +336,44 @@
             border-radius: 8px;
 
             font-size: 14px;
+
+            transition: 0.2s ease;
+
         }
 
+
         .sidebar-bottom a:hover {
+
             background: var(--sidebar-hover);
 
             color: white;
+
+        }
+
+
+        /* =====================================================
+           MOBILE OVERLAY
+        ===================================================== */
+
+        .sidebar-overlay {
+
+            display: none;
+
+            position: fixed;
+
+            inset: 0;
+
+            background: rgba(0, 0, 0, 0.45);
+
+            z-index: 998;
+
+        }
+
+
+        .sidebar-overlay.show {
+
+            display: block;
+
         }
 
 
@@ -233,6 +382,7 @@
         ===================================================== */
 
         .main {
+
             margin-left: 250px;
 
             width: calc(100% - 250px);
@@ -240,6 +390,7 @@
             padding: 30px;
 
             min-width: 0;
+
         }
 
 
@@ -248,43 +399,59 @@
         ===================================================== */
 
         .header {
+
             display: flex;
 
             justify-content: space-between;
+
             align-items: center;
 
             gap: 20px;
 
             margin-bottom: 28px;
+
         }
 
+
         .header-title h1 {
+
             font-size: 27px;
 
             font-weight: 700;
+
         }
 
+
         .header-title p {
+
             color: var(--muted);
 
             font-size: 13px;
 
             margin-top: 5px;
+
         }
 
+
         .header-right {
+
             display: flex;
 
             align-items: center;
 
             gap: 15px;
+
         }
 
 
-        /* System status */
+        /* =====================================================
+           SYSTEM STATUS
+        ===================================================== */
 
         .system-status {
+
             display: flex;
+
             align-items: center;
 
             background: #ecfdf5;
@@ -298,9 +465,12 @@
             font-size: 12px;
 
             white-space: nowrap;
+
         }
 
+
         .status-dot {
+
             width: 7px;
             height: 7px;
 
@@ -310,13 +480,19 @@
 
             margin-right: 7px;
 
-            box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.12);
+            box-shadow:
+                0 0 0 3px
+                rgba(34, 197, 94, 0.12);
+
         }
 
 
-        /* Avatar */
+        /* =====================================================
+           AVATAR
+        ===================================================== */
 
         .avatar {
+
             width: 40px;
             height: 40px;
 
@@ -336,6 +512,7 @@
             font-weight: 700;
 
             flex-shrink: 0;
+
         }
 
 
@@ -344,6 +521,7 @@
         ===================================================== */
 
         .stats {
+
             display: grid;
 
             grid-template-columns:
@@ -352,9 +530,12 @@
             gap: 18px;
 
             margin-bottom: 20px;
+
         }
 
+
         .stat-card {
+
             background: var(--card);
 
             border: 1px solid var(--border);
@@ -368,16 +549,23 @@
             transition:
                 transform 0.2s ease,
                 box-shadow 0.2s ease;
+
         }
 
+
         .stat-card:hover {
+
             transform: translateY(-2px);
 
             box-shadow:
-                0 8px 20px rgba(15, 23, 42, 0.06);
+                0 8px 20px
+                rgba(15, 23, 42, 0.06);
+
         }
 
+
         .stat-top {
+
             display: flex;
 
             align-items: center;
@@ -389,69 +577,96 @@
             color: var(--muted);
 
             font-size: 13px;
+
         }
 
+
         .stat-card h2 {
+
             font-size: 29px;
 
             margin: 12px 0 5px;
+
         }
 
+
         .stat-card p {
+
             color: var(--muted);
 
             font-size: 11px;
+
         }
 
 
-        /* Stat icons */
+        /* =====================================================
+           STAT ICONS
+        ===================================================== */
 
         .icon {
+
             width: 34px;
             height: 34px;
 
             border-radius: 8px;
 
             display: flex;
+
             align-items: center;
             justify-content: center;
 
             font-weight: 700;
 
             flex-shrink: 0;
+
         }
 
+
         .icon.blue {
+
             background: #eff6ff;
 
             color: #2563eb;
+
         }
 
+
         .icon.green {
+
             background: #ecfdf5;
 
             color: #16a34a;
+
         }
 
+
         .icon.red {
+
             background: #fef2f2;
 
             color: #dc2626;
+
         }
 
+
         .icon.orange {
+
             background: #fff7ed;
 
             color: #ea580c;
+
         }
+
 
         .green-text {
             color: var(--green);
         }
 
+
         .red-text {
             color: var(--red);
         }
+
 
         .orange-text {
             color: var(--orange);
@@ -463,6 +678,7 @@
         ===================================================== */
 
         .dashboard-grid {
+
             display: grid;
 
             grid-template-columns:
@@ -472,9 +688,12 @@
             gap: 20px;
 
             margin-bottom: 20px;
+
         }
 
+
         .card {
+
             background: var(--card);
 
             border: 1px solid var(--border);
@@ -484,40 +703,55 @@
             padding: 20px;
 
             min-width: 0;
+
         }
 
 
-        /* Card header */
+        /* =====================================================
+           CARD HEADER
+        ===================================================== */
 
         .card-header {
+
             display: flex;
 
             justify-content: space-between;
+
             align-items: center;
 
             gap: 15px;
 
             margin-bottom: 20px;
+
         }
 
+
         .card-header h3 {
+
             font-size: 16px;
 
             font-weight: 650;
+
         }
 
+
         .card-header p {
+
             color: var(--muted);
 
             font-size: 11px;
 
             margin-top: 4px;
+
         }
 
 
-        /* Select */
+        /* =====================================================
+           SELECT
+        ===================================================== */
 
         .period-select {
+
             border: 1px solid var(--border);
 
             background: white;
@@ -531,6 +765,7 @@
             font-size: 11px;
 
             outline: none;
+
         }
 
 
@@ -539,55 +774,73 @@
         ===================================================== */
 
         .chart {
+
             position: relative;
 
             height: 280px;
 
             padding-left: 45px;
+
         }
 
+
         .chart svg {
+
             position: absolute;
 
             left: 45px;
+
             top: 10px;
 
             width: calc(100% - 55px);
 
             height: 220px;
+
         }
 
+
         .grid-line {
+
             position: absolute;
 
             left: 45px;
+
             right: 0;
 
             border-top:
                 1px dashed #e5e7eb;
+
         }
+
 
         .line1 {
             top: 20px;
         }
 
+
         .line2 {
             top: 75px;
         }
+
 
         .line3 {
             top: 130px;
         }
 
+
         .line4 {
             top: 185px;
         }
 
+
         .chart-values {
+
             position: absolute;
 
             left: 0;
+
             top: 10px;
+
             bottom: 60px;
 
             display: flex;
@@ -599,12 +852,16 @@
             color: #9ca3af;
 
             font-size: 9px;
+
         }
 
+
         .chart-labels {
+
             position: absolute;
 
             left: 45px;
+
             right: 0;
 
             bottom: 20px;
@@ -616,9 +873,12 @@
             color: #9ca3af;
 
             font-size: 9px;
+
         }
 
+
         .chart-line {
+
             fill: none;
 
             stroke: var(--primary);
@@ -626,10 +886,14 @@
             stroke-width: 3;
 
             stroke-linecap: round;
+
         }
 
+
         .chart-area {
+
             fill: url(#area);
+
         }
 
 
@@ -638,6 +902,7 @@
         ===================================================== */
 
         .alert {
+
             display: flex;
 
             align-items: flex-start;
@@ -646,14 +911,21 @@
 
             padding: 13px 0;
 
-            border-bottom: 1px solid #f0f0f0;
+            border-bottom:
+                1px solid #f0f0f0;
+
         }
+
 
         .alert:last-child {
+
             border-bottom: none;
+
         }
 
+
         .alert-icon {
+
             width: 32px;
             height: 32px;
 
@@ -667,56 +939,81 @@
             font-weight: 700;
 
             flex-shrink: 0;
+
         }
 
+
         .alert-icon.critical {
+
             background: #fee2e2;
 
             color: var(--red);
+
         }
 
+
         .alert-icon.warning {
+
             background: #ffedd5;
 
             color: var(--orange);
+
         }
 
+
         .alert-icon.info {
+
             background: #dbeafe;
 
             color: var(--primary);
+
         }
+
 
         .alert-content {
+
             min-width: 0;
+
         }
 
+
         .alert-content strong {
+
             display: block;
 
             font-size: 12px;
+
         }
 
+
         .alert-content p {
+
             color: var(--muted);
 
             font-size: 10px;
 
             margin: 4px 0;
+
         }
 
+
         .alert-content small {
+
             color: #9ca3af;
 
             font-size: 9px;
+
         }
 
+
         .view-link {
+
             color: var(--primary);
 
             font-size: 11px;
 
             white-space: nowrap;
+
         }
 
 
@@ -725,10 +1022,14 @@
         ===================================================== */
 
         .devices-card {
+
             padding-bottom: 0;
+
         }
 
+
         .add-button {
+
             border: none;
 
             background: var(--primary);
@@ -746,24 +1047,34 @@
             white-space: nowrap;
 
             transition: 0.2s;
+
         }
+
 
         .add-button:hover {
+
             background: var(--primary-dark);
+
         }
 
 
-        /* Table */
+        /* =====================================================
+           TABLE
+        ===================================================== */
 
         .table-wrapper {
+
             width: 100%;
 
             overflow-x: auto;
 
             -webkit-overflow-scrolling: touch;
+
         }
 
+
         table {
+
             width: 100%;
 
             min-width: 850px;
@@ -771,9 +1082,12 @@
             border-collapse: collapse;
 
             font-size: 11px;
+
         }
 
+
         th {
+
             text-align: left;
 
             color: #9ca3af;
@@ -784,29 +1098,41 @@
 
             padding: 12px 10px;
 
-            border-bottom: 1px solid var(--border);
+            border-bottom:
+                1px solid var(--border);
+
         }
+
 
         td {
+
             padding: 15px 10px;
 
-            border-bottom: 1px solid #f0f0f0;
+            border-bottom:
+                1px solid #f0f0f0;
 
             white-space: nowrap;
+
         }
 
 
-        /* Device */
+        /* =====================================================
+           DEVICE
+        ===================================================== */
 
         .device {
+
             display: flex;
 
             align-items: center;
 
             gap: 10px;
+
         }
 
+
         .server-icon {
+
             width: 34px;
             height: 34px;
 
@@ -822,17 +1148,23 @@
             justify-content: center;
 
             flex-shrink: 0;
+
         }
 
+
         .device-name {
+
             display: block;
 
             font-weight: 600;
 
             font-size: 11px;
+
         }
 
+
         .device-ip {
+
             display: block;
 
             color: #9ca3af;
@@ -840,12 +1172,16 @@
             font-size: 9px;
 
             margin-top: 3px;
+
         }
 
 
-        /* Status */
+        /* =====================================================
+           STATUS
+        ===================================================== */
 
         .badge {
+
             display: inline-flex;
 
             align-items: center;
@@ -857,51 +1193,76 @@
             border-radius: 20px;
 
             font-size: 9px;
+
         }
 
+
         .badge-dot {
+
             width: 6px;
             height: 6px;
 
             border-radius: 50%;
+
         }
 
+
         .badge.online {
+
             background: #ecfdf5;
 
             color: #15803d;
+
         }
+
 
         .badge.online .badge-dot {
+
             background: #22c55e;
+
         }
 
+
         .badge.offline {
+
             background: #fef2f2;
 
             color: var(--red);
+
         }
+
 
         .badge.offline .badge-dot {
+
             background: #ef4444;
+
         }
 
 
-        /* Metrics */
+        /* =====================================================
+           METRICS
+        ===================================================== */
 
         .metric {
+
             width: 100px;
+
         }
 
+
         .metric-value {
+
             display: block;
 
             font-size: 10px;
 
             margin-bottom: 5px;
+
         }
 
+
         .progress {
+
             width: 100%;
 
             height: 5px;
@@ -911,22 +1272,32 @@
             border-radius: 10px;
 
             overflow: hidden;
+
         }
 
+
         .progress-bar {
+
             height: 100%;
 
             border-radius: 10px;
 
             background: var(--primary);
+
         }
+
 
         .progress-bar.warning {
+
             background: var(--yellow);
+
         }
 
+
         .progress-bar.danger {
+
             background: var(--red);
+
         }
 
 
@@ -937,12 +1308,17 @@
         @media (max-width: 1100px) {
 
             .stats {
+
                 grid-template-columns:
                     repeat(2, minmax(0, 1fr));
+
             }
 
+
             .dashboard-grid {
+
                 grid-template-columns: 1fr;
+
             }
 
         }
@@ -954,9 +1330,13 @@
 
         @media (max-width: 768px) {
 
-            /* Top navigation */
+
+            /* -------------------------------------------------
+               TOP BAR
+            ------------------------------------------------- */
 
             .sidebar {
+
                 position: fixed;
 
                 top: 0;
@@ -978,75 +1358,194 @@
                 align-items: center;
 
                 justify-content: space-between;
+
             }
 
+
+            /* -------------------------------------------------
+               LOGO
+            ------------------------------------------------- */
+
             .logo {
+
                 padding: 0;
 
                 gap: 8px;
+
             }
 
+
             .logo-icon {
+
                 width: 36px;
                 height: 36px;
 
                 border-radius: 9px;
 
                 font-size: 17px;
+
             }
+
 
             .logo-text strong {
+
                 font-size: 14px;
+
             }
+
 
             .logo-text span {
+
                 font-size: 8px;
+
             }
 
 
-            /* Mobile nav */
+            /* -------------------------------------------------
+               HAMBURGER
+            ------------------------------------------------- */
 
-            .nav {
-                flex-direction: row;
-
-                gap: 3px;
-            }
-
-            .nav a {
-                width: 36px;
-                height: 36px;
-
-                padding: 0;
+            .hamburger {
 
                 display: flex;
 
-                align-items: center;
-                justify-content: center;
-
-                border-radius: 8px;
             }
+
+
+            /* -------------------------------------------------
+               MOBILE NAV
+            ------------------------------------------------- */
+
+            .nav {
+
+                position: fixed;
+
+                top: 64px;
+
+                left: 0;
+
+                width: 250px;
+
+                height: calc(100vh - 64px);
+
+                padding: 20px 16px;
+
+                background: var(--sidebar);
+
+                display: flex;
+
+                flex-direction: column;
+
+                gap: 5px;
+
+                transform: translateX(-100%);
+
+                transition:
+                    transform 0.3s ease;
+
+                z-index: 999;
+
+                overflow-y: auto;
+
+            }
+
+
+            .nav.open {
+
+                transform: translateX(0);
+
+            }
+
+
+            .nav a {
+
+                width: 100%;
+
+                height: auto;
+
+                padding: 12px;
+
+                justify-content: flex-start;
+
+            }
+
 
             .nav-label {
-                display: none;
+
+                display: inline;
+
             }
+
 
             .nav-icon {
-                width: auto;
+
+                width: 22px;
 
                 font-size: 17px;
+
             }
 
 
-            /* Hide bottom sidebar */
+            /* -------------------------------------------------
+               SETTINGS
+            ------------------------------------------------- */
+
+            .mobile-menu-item {
+
+                display: flex !important;
+
+            }
+
+
+            .mobile-menu-item.settings {
+
+                margin-top: 20px;
+
+                border-top:
+                    1px solid #374151;
+
+                padding-top: 20px;
+
+            }
+
+
+            /* -------------------------------------------------
+               LOGOUT
+            ------------------------------------------------- */
+
+            .mobile-menu-item.logout {
+
+                color: #f87171;
+
+            }
+
+
+            .mobile-menu-item.logout:hover {
+
+                background: #3f1d1d;
+
+                color: #fca5a5;
+
+            }
+
+
+            /* -------------------------------------------------
+               DESKTOP BOTTOM HIDDEN
+            ------------------------------------------------- */
 
             .sidebar-bottom {
+
                 display: none;
+
             }
 
 
-            /* Main */
+            /* -------------------------------------------------
+               MAIN
+            ------------------------------------------------- */
 
             .main {
+
                 margin-left: 0;
 
                 width: 100%;
@@ -1055,100 +1554,160 @@
                     84px
                     15px
                     25px;
+
             }
 
 
-            /* Header */
+            /* -------------------------------------------------
+               HEADER
+            ------------------------------------------------- */
 
             .header {
+
                 margin-bottom: 20px;
+
             }
+
 
             .header-title h1 {
+
                 font-size: 22px;
+
             }
+
 
             .header-title p {
+
                 font-size: 11px;
+
             }
+
 
             .system-status {
+
                 display: none;
+
             }
 
+
             .avatar {
+
                 width: 36px;
                 height: 36px;
 
                 font-size: 11px;
+
             }
 
 
-            /* Statistics */
+            /* -------------------------------------------------
+               STATISTICS
+            ------------------------------------------------- */
 
             .stats {
+
                 grid-template-columns:
                     repeat(2, minmax(0, 1fr));
 
                 gap: 10px;
+
             }
+
 
             .stat-card {
+
                 padding: 15px;
+
             }
+
 
             .stat-top {
+
                 font-size: 11px;
+
             }
+
 
             .stat-card h2 {
+
                 font-size: 24px;
 
-                margin: 9px 0 4px;
+                margin:
+                    9px
+                    0
+                    4px;
+
             }
+
 
             .stat-card p {
+
                 font-size: 10px;
+
             }
 
 
-            /* Cards */
+            /* -------------------------------------------------
+               CARDS
+            ------------------------------------------------- */
 
             .card {
+
                 padding: 15px;
 
                 border-radius: 10px;
+
             }
 
 
-            /* Chart */
+            /* -------------------------------------------------
+               CHART
+            ------------------------------------------------- */
 
             .chart {
+
                 height: 240px;
+
             }
+
 
             .chart svg {
+
                 height: 190px;
+
             }
 
 
-            /* Alerts */
+            /* -------------------------------------------------
+               ALERTS
+            ------------------------------------------------- */
 
             .alert {
+
                 padding: 11px 0;
+
             }
 
 
-            /* Device card */
+            /* -------------------------------------------------
+               DEVICES
+            ------------------------------------------------- */
 
             .devices-card .card-header {
+
                 align-items: center;
+
             }
 
+
             .add-button {
-                padding: 8px 10px;
+
+                padding:
+                    8px
+                    10px;
 
                 font-size: 10px;
+
             }
 
         }
@@ -1160,150 +1719,228 @@
 
         @media (max-width: 480px) {
 
+
             .sidebar {
+
                 height: 60px;
 
                 padding:
                     8px
                     10px;
+
             }
+
 
             .logo-text span {
+
                 display: none;
+
             }
+
 
             .logo-icon {
+
                 width: 34px;
                 height: 34px;
+
             }
+
+
+            .hamburger {
+
+                width: 34px;
+                height: 34px;
+
+                font-size: 22px;
+
+            }
+
 
             .nav {
-                gap: 2px;
-            }
 
-            .nav a {
-                width: 32px;
-                height: 32px;
-            }
+                top: 60px;
 
-            .nav-icon {
-                font-size: 15px;
+                height: calc(100vh - 60px);
+
             }
 
 
-            /* Main */
+            /* -------------------------------------------------
+               MAIN
+            ------------------------------------------------- */
 
             .main {
+
                 padding:
                     75px
                     10px
                     20px;
+
             }
 
 
-            /* Header */
+            /* -------------------------------------------------
+               HEADER
+            ------------------------------------------------- */
 
             .header-title h1 {
+
                 font-size: 20px;
+
             }
 
 
-            /* Statistics */
+            /* -------------------------------------------------
+               STATISTICS
+            ------------------------------------------------- */
 
             .stats {
+
                 grid-template-columns: 1fr;
 
                 gap: 9px;
+
             }
+
 
             .stat-card {
+
                 padding: 14px;
+
             }
+
 
             .stat-card h2 {
+
                 font-size: 22px;
+
             }
 
 
-            /* Card */
+            /* -------------------------------------------------
+               CARD
+            ------------------------------------------------- */
 
             .card {
+
                 padding: 14px;
+
             }
 
 
-            /* Card header */
+            /* -------------------------------------------------
+               CARD HEADER
+            ------------------------------------------------- */
 
             .card-header {
+
                 align-items: flex-start;
+
             }
 
 
-            /* Chart */
+            /* -------------------------------------------------
+               CHART
+            ------------------------------------------------- */
 
             .chart-card .card-header {
+
                 flex-direction: column;
 
                 align-items: stretch;
+
             }
+
 
             .period-select {
+
                 width: 100%;
+
             }
 
+
             .chart {
+
                 height: 220px;
 
                 padding-left: 35px;
+
             }
+
 
             .chart svg {
+
                 left: 35px;
 
-                width: calc(100% - 40px);
+                width:
+                    calc(100% - 40px);
 
                 height: 170px;
+
             }
+
 
             .grid-line {
+
                 left: 35px;
+
             }
+
 
             .chart-values {
+
                 font-size: 8px;
+
             }
 
+
             .chart-labels {
+
                 left: 35px;
 
                 font-size: 8px;
+
             }
 
 
-            /* Alerts */
+            /* -------------------------------------------------
+               ALERTS
+            ------------------------------------------------- */
 
             .alert-icon {
+
                 width: 29px;
                 height: 29px;
 
                 font-size: 10px;
+
             }
+
 
             .alert-content strong {
+
                 font-size: 11px;
+
             }
 
 
-            /* Device header */
+            /* -------------------------------------------------
+               DEVICE HEADER
+            ------------------------------------------------- */
 
             .devices-card .card-header {
+
                 flex-direction: column;
 
                 align-items: stretch;
+
             }
 
+
             .add-button {
+
                 width: 100%;
+
             }
 
         }
@@ -1315,45 +1952,60 @@
 
         @media (max-width: 360px) {
 
+
             .logo-text strong {
+
                 font-size: 12px;
+
             }
 
-            .nav a {
-                width: 29px;
+
+            .hamburger {
+
+                width: 32px;
+                height: 32px;
+
+                font-size: 20px;
+
             }
 
-            .nav-icon {
-                font-size: 14px;
-            }
 
             .main {
+
                 padding-left: 8px;
+
                 padding-right: 8px;
+
             }
 
+
             .stat-card {
+
                 padding: 12px;
+
             }
 
         }
 
     </style>
+
 </head>
 
 
 <body>
 
+
 <div class="app">
 
 
     <!-- =====================================================
-         SIDEBAR / MOBILE NAVIGATION
+         SIDEBAR
     ===================================================== -->
 
     <aside class="sidebar">
 
-        <!-- Logo -->
+
+        <!-- LOGO -->
 
         <div class="logo">
 
@@ -1376,11 +2028,34 @@
         </div>
 
 
-        <!-- Navigation -->
+        <!-- HAMBURGER -->
 
-        <nav class="nav">
+        <button
+            class="hamburger"
+            id="hamburger"
+            aria-label="Open navigation"
+            aria-expanded="false"
+        >
+            ☰
+        </button>
 
-            <a href="#" class="active">
+
+        <!-- =================================================
+             NAVIGATION
+        ================================================= -->
+
+        <nav
+            class="nav"
+            id="nav"
+        >
+
+
+            <!-- DASHBOARD -->
+
+            <a
+                href="#"
+                class="active"
+            >
 
                 <span class="nav-icon">
                     ▦
@@ -1392,6 +2067,8 @@
 
             </a>
 
+
+            <!-- DEVICES -->
 
             <a href="#">
 
@@ -1406,6 +2083,8 @@
             </a>
 
 
+            <!-- METRICS -->
+
             <a href="#">
 
                 <span class="nav-icon">
@@ -1418,6 +2097,8 @@
 
             </a>
 
+
+            <!-- ALERTS -->
 
             <a href="#">
 
@@ -1432,6 +2113,8 @@
             </a>
 
 
+            <!-- LOGS -->
+
             <a href="#">
 
                 <span class="nav-icon">
@@ -1444,25 +2127,85 @@
 
             </a>
 
+
+            <!-- =================================================
+                 MOBILE SETTINGS
+            ================================================= -->
+
+            <a
+                href="#"
+                class="mobile-menu-item settings"
+            >
+
+                <span class="nav-icon">
+                    ⚙
+                </span>
+
+                <span class="nav-label">
+                    Settings
+                </span>
+
+            </a>
+
+
+            <!-- =================================================
+                 MOBILE LOGOUT
+            ================================================= -->
+
+            <a
+                href="#"
+                class="mobile-menu-item logout"
+            >
+
+                <span class="nav-icon">
+                    ⇥
+                </span>
+
+                <span class="nav-label">
+                    Logout
+                </span>
+
+            </a>
+
+
         </nav>
 
 
-        <!-- Sidebar bottom -->
+        <!-- =================================================
+             DESKTOP BOTTOM
+        ================================================= -->
 
         <div class="sidebar-bottom">
 
-            <a href="#">
-                ⚙ &nbsp; Settings
-            </a>
 
             <a href="#">
-                ⇥ &nbsp; Logout
+
+                ⚙ &nbsp; Settings
+
             </a>
+
+
+            <a href="#">
+
+                ⇥ &nbsp; Logout
+
+            </a>
+
 
         </div>
 
+
     </aside>
 
+
+    <!-- =====================================================
+         MOBILE OVERLAY
+    ===================================================== -->
+
+    <div
+        class="sidebar-overlay"
+        id="sidebarOverlay"
+    ></div>
 
 
     <!-- =====================================================
@@ -1477,6 +2220,7 @@
         ================================================= -->
 
         <header class="header">
+
 
             <div class="header-title">
 
@@ -1493,6 +2237,7 @@
 
             <div class="header-right">
 
+
                 <div class="system-status">
 
                     <span class="status-dot"></span>
@@ -1503,13 +2248,16 @@
 
 
                 <div class="avatar">
+
                     AD
+
                 </div>
+
 
             </div>
 
-        </header>
 
+        </header>
 
 
         <!-- =================================================
@@ -1519,9 +2267,10 @@
         <section class="stats">
 
 
-            <!-- Total devices -->
+            <!-- TOTAL DEVICES -->
 
             <div class="stat-card">
+
 
                 <div class="stat-top">
 
@@ -1535,24 +2284,30 @@
 
                 </div>
 
+
                 <h2>
                     24
                 </h2>
 
+
                 <p>
+
                     <strong class="green-text">
                         +2
                     </strong>
 
                     this month
+
                 </p>
+
 
             </div>
 
 
-            <!-- Online -->
+            <!-- ONLINE -->
 
             <div class="stat-card">
+
 
                 <div class="stat-top">
 
@@ -1566,9 +2321,11 @@
 
                 </div>
 
+
                 <h2>
                     21
                 </h2>
+
 
                 <p>
 
@@ -1580,12 +2337,14 @@
 
                 </p>
 
+
             </div>
 
 
-            <!-- Offline -->
+            <!-- OFFLINE -->
 
             <div class="stat-card">
+
 
                 <div class="stat-top">
 
@@ -1599,9 +2358,11 @@
 
                 </div>
 
+
                 <h2>
                     3
                 </h2>
+
 
                 <p>
 
@@ -1611,12 +2372,14 @@
 
                 </p>
 
+
             </div>
 
 
-            <!-- Alerts -->
+            <!-- ALERTS -->
 
             <div class="stat-card">
+
 
                 <div class="stat-top">
 
@@ -1630,9 +2393,11 @@
 
                 </div>
 
+
                 <h2>
                     7
                 </h2>
+
 
                 <p>
 
@@ -1642,10 +2407,11 @@
 
                 </p>
 
+
             </div>
 
-        </section>
 
+        </section>
 
 
         <!-- =================================================
@@ -1661,7 +2427,9 @@
 
             <div class="card chart-card">
 
+
                 <div class="card-header">
+
 
                     <div>
 
@@ -1692,21 +2460,25 @@
 
                     </select>
 
+
                 </div>
 
 
                 <div class="chart">
 
 
-                    <!-- Horizontal grid -->
+                    <!-- GRID -->
 
                     <div class="grid-line line1"></div>
+
                     <div class="grid-line line2"></div>
+
                     <div class="grid-line line3"></div>
+
                     <div class="grid-line line4"></div>
 
 
-                    <!-- Values -->
+                    <!-- VALUES -->
 
                     <div class="chart-values">
 
@@ -1733,12 +2505,13 @@
                     </div>
 
 
-                    <!-- SVG chart -->
+                    <!-- SVG CHART -->
 
                     <svg
                         viewBox="0 0 700 250"
                         preserveAspectRatio="none"
                     >
+
 
                         <defs>
 
@@ -1767,7 +2540,7 @@
                         </defs>
 
 
-                        <!-- Area -->
+                        <!-- AREA -->
 
                         <path
                             class="chart-area"
@@ -1787,7 +2560,7 @@
                         />
 
 
-                        <!-- Line -->
+                        <!-- LINE -->
 
                         <path
                             class="chart-line"
@@ -1803,10 +2576,11 @@
                             "
                         />
 
+
                     </svg>
 
 
-                    <!-- Time -->
+                    <!-- LABELS -->
 
                     <div class="chart-labels">
 
@@ -1832,19 +2606,22 @@
 
                     </div>
 
+
                 </div>
+
 
             </div>
 
 
-
             <!-- =================================================
-                 ALERTS
+                 RECENT ALERTS
             ================================================= -->
 
             <div class="card">
 
+
                 <div class="card-header">
+
 
                     <div>
 
@@ -1858,6 +2635,7 @@
 
                     </div>
 
+
                     <a
                         href="#"
                         class="view-link"
@@ -1865,16 +2643,19 @@
                         View all
                     </a>
 
+
                 </div>
 
 
-                <!-- Alert 1 -->
+                <!-- ALERT 1 -->
 
                 <div class="alert">
+
 
                     <div class="alert-icon critical">
                         !
                     </div>
+
 
                     <div class="alert-content">
 
@@ -1892,16 +2673,19 @@
 
                     </div>
 
+
                 </div>
 
 
-                <!-- Alert 2 -->
+                <!-- ALERT 2 -->
 
                 <div class="alert">
+
 
                     <div class="alert-icon warning">
                         !
                     </div>
+
 
                     <div class="alert-content">
 
@@ -1919,16 +2703,19 @@
 
                     </div>
 
+
                 </div>
 
 
-                <!-- Alert 3 -->
+                <!-- ALERT 3 -->
 
                 <div class="alert">
+
 
                     <div class="alert-icon info">
                         i
                     </div>
+
 
                     <div class="alert-content">
 
@@ -1946,12 +2733,14 @@
 
                     </div>
 
+
                 </div>
+
 
             </div>
 
-        </section>
 
+        </section>
 
 
         <!-- =================================================
@@ -1961,9 +2750,10 @@
         <section class="card devices-card">
 
 
-            <!-- Header -->
+            <!-- HEADER -->
 
             <div class="card-header">
+
 
                 <div>
 
@@ -1979,17 +2769,22 @@
 
 
                 <button class="add-button">
+
                     + Add Device
+
                 </button>
+
 
             </div>
 
 
-            <!-- Table -->
+            <!-- TABLE -->
 
             <div class="table-wrapper">
 
+
                 <table>
+
 
                     <thead>
 
@@ -2031,19 +2826,22 @@
                     <tbody>
 
 
-                        <!-- =================================
+                        <!-- =================================================
                              SERVER 01
-                        ================================== -->
+                        ================================================= -->
 
                         <tr>
+
 
                             <td>
 
                                 <div class="device">
 
+
                                     <div class="server-icon">
                                         ▣
                                     </div>
+
 
                                     <div>
 
@@ -2056,6 +2854,7 @@
                                         </span>
 
                                     </div>
+
 
                                 </div>
 
@@ -2123,31 +2922,36 @@
                                 54%
                             </td>
 
+
                             <td>
                                 12d 4h
                             </td>
+
 
                             <td>
                                 10 sec ago
                             </td>
 
+
                         </tr>
 
 
-
-                        <!-- =================================
+                        <!-- =================================================
                              SERVER 03
-                        ================================== -->
+                        ================================================= -->
 
                         <tr>
+
 
                             <td>
 
                                 <div class="device">
 
+
                                     <div class="server-icon">
                                         ▣
                                     </div>
+
 
                                     <div>
 
@@ -2160,6 +2964,7 @@
                                         </span>
 
                                     </div>
+
 
                                 </div>
 
@@ -2227,31 +3032,36 @@
                                 71%
                             </td>
 
+
                             <td>
                                 3d 18h
                             </td>
+
 
                             <td>
                                 5 sec ago
                             </td>
 
+
                         </tr>
 
 
-
-                        <!-- =================================
+                        <!-- =================================================
                              SERVER 07
-                        ================================== -->
+                        ================================================= -->
 
                         <tr>
+
 
                             <td>
 
                                 <div class="device">
 
+
                                     <div class="server-icon">
                                         ▣
                                     </div>
+
 
                                     <div>
 
@@ -2264,6 +3074,7 @@
                                         </span>
 
                                     </div>
+
 
                                 </div>
 
@@ -2287,39 +3098,46 @@
                                 —
                             </td>
 
-                            <td>
-                                —
-                            </td>
 
                             <td>
                                 —
                             </td>
 
+
                             <td>
                                 —
                             </td>
+
+
+                            <td>
+                                —
+                            </td>
+
 
                             <td>
                                 12 min ago
                             </td>
 
+
                         </tr>
 
 
-
-                        <!-- =================================
+                        <!-- =================================================
                              SERVER 12
-                        ================================== -->
+                        ================================================= -->
 
                         <tr>
+
 
                             <td>
 
                                 <div class="device">
 
+
                                     <div class="server-icon">
                                         ▣
                                     </div>
+
 
                                     <div>
 
@@ -2332,6 +3150,7 @@
                                         </span>
 
                                     </div>
+
 
                                 </div>
 
@@ -2399,27 +3218,237 @@
                                 38%
                             </td>
 
+
                             <td>
                                 21d 8h
                             </td>
+
 
                             <td>
                                 3 sec ago
                             </td>
 
+
                         </tr>
+
 
                     </tbody>
 
+
                 </table>
+
 
             </div>
 
+
         </section>
+
 
     </main>
 
+
 </div>
 
+
+<!-- =====================================================
+     JAVASCRIPT
+===================================================== -->
+
+<script>
+
+
+    /* =====================================================
+       ELEMENTS
+    ===================================================== */
+
+    const hamburger =
+        document.getElementById("hamburger");
+
+    const nav =
+        document.getElementById("nav");
+
+    const overlay =
+        document.getElementById("sidebarOverlay");
+
+
+    /* =====================================================
+       OPEN MENU
+    ===================================================== */
+
+    function openMenu() {
+
+        nav.classList.add("open");
+
+        overlay.classList.add("show");
+
+        hamburger.textContent = "✕";
+
+        hamburger.setAttribute(
+            "aria-expanded",
+            "true"
+        );
+
+    }
+
+
+    /* =====================================================
+       CLOSE MENU
+    ===================================================== */
+
+    function closeMenu() {
+
+        nav.classList.remove("open");
+
+        overlay.classList.remove("show");
+
+        hamburger.textContent = "☰";
+
+        hamburger.setAttribute(
+            "aria-expanded",
+            "false"
+        );
+
+    }
+
+
+    /* =====================================================
+       TOGGLE MENU
+    ===================================================== */
+
+    hamburger.addEventListener(
+        "click",
+        function() {
+
+            const isOpen =
+                nav.classList.contains("open");
+
+
+            if (isOpen) {
+
+                closeMenu();
+
+            } else {
+
+                openMenu();
+
+            }
+
+        }
+    );
+
+
+    /* =====================================================
+       OVERLAY CLICK
+    ===================================================== */
+
+    overlay.addEventListener(
+        "click",
+        function() {
+
+            closeMenu();
+
+        }
+    );
+
+
+    /* =====================================================
+       NAVIGATION CLICK
+    ===================================================== */
+
+    const navLinks =
+        document.querySelectorAll(".nav a");
+
+
+    navLinks.forEach(function(link) {
+
+        link.addEventListener(
+            "click",
+            function() {
+
+
+                /* -----------------------------------------
+                   ACTIVE MENU
+                ----------------------------------------- */
+
+                navLinks.forEach(function(item) {
+
+                    item.classList.remove("active");
+
+                });
+
+
+                /* Don't make logout red item active */
+
+                if (
+                    !link.classList.contains("logout")
+                ) {
+
+                    link.classList.add("active");
+
+                }
+
+
+                /* -----------------------------------------
+                   CLOSE MOBILE MENU
+                ----------------------------------------- */
+
+                if (
+                    window.innerWidth <= 768
+                ) {
+
+                    closeMenu();
+
+                }
+
+            }
+        );
+
+    });
+
+
+    /* =====================================================
+       WINDOW RESIZE
+    ===================================================== */
+
+    window.addEventListener(
+        "resize",
+        function() {
+
+            if (
+                window.innerWidth > 768
+            ) {
+
+                closeMenu();
+
+            }
+
+        }
+    );
+
+
+    /* =====================================================
+       ESC KEY
+    ===================================================== */
+
+    document.addEventListener(
+        "keydown",
+        function(event) {
+
+            if (
+                event.key === "Escape"
+            ) {
+
+                closeMenu();
+
+            }
+
+        }
+    );
+
+
+</script>
+
+
 </body>
+
 </html>
